@@ -1,7 +1,7 @@
-commit 9bc8fdc2aafa621d0304c2544a8fae177f9a83d4
+commit a29925397e49e6e49202a034200bb29223b195c4
 Author: Edwin Hernandez <edwinhdz442@gmail.com>
-Date:   Thu Feb 9 04:48:03 2023 +0000
+Date:   Fri Feb 10 06:25:38 2023 +0000
 
-    AccountService Logic
+    AccountDAO and MessageDao logic
 
- 3 files changed, 1683 insertions(+)
+ 4 files changed, 177 insertions(+), 239 deletions(-)
