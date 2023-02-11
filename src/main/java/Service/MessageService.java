@@ -29,7 +29,7 @@ public class MessageService {
     }
 
     public Message addMessage(Message message){
-        if(message.getMessage_text() != null && message.getMessage_text().length() < 255 && message.getPosted_by() > 0){
+        if(message.getMessage_text() != null && message.getMessage_text().length() < 255){
             return messageDAO.insertMessage(message);
         } else {
             return null;
