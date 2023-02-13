@@ -25,7 +25,7 @@ public class MessageService {
     }
 
     public Message getMessage(int message_id){
-        return messageDAO.getMessage(message_id);
+        return messageDAO.getMessageById(message_id);
     }
 
     public Message addMessage(Message message){
@@ -36,11 +36,19 @@ public class MessageService {
         }
     }
 
-    public Message updatMessage(String message_text, int message_id, Message message){
-        Message m = this.messageDAO.getMessage(message_id);
+    public Message updateMessage(String message_text, int message_id, Message message){
+        Message m = this.messageDAO.getMessageById(message_id);
         if(m == null) return null;
 
         messageDAO.updateMessage(message_text, message_id, message);
-        return this.messageDAO.getMessage(message.getMessage_id());
+        return this.messageDAO.getMessageById(message.getMessage_id());
+    }
+
+    public Message deleteMessage(int message_id, Message message){
+        Message m = this.messageDAO.getMessageById(message_id);
+        if(m == null) return null;
+
+        messageDAO.deleteMessage(message_id, message);
+        return this.messageDAO.getMessageById(message_id);
     }
 }
