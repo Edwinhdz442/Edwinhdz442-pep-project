@@ -29,26 +29,27 @@ public class MessageService {
     }
 
     public Message addMessage(Message message){
-        if(message.getMessage_text() != null && message.getMessage_text().length() < 255){
+        if((!message.getMessage_text().isBlank()) && message.getMessage_text().length() < 255){
             return messageDAO.insertMessage(message);
         } else {
             return null;
         }
     }
 
-    public Message updateMessage(String message_text, int message_id, Message message){
-        Message m = this.messageDAO.getMessageById(message_id);
-        if(m == null) return null;
-
-        messageDAO.updateMessage(message_text, message_id, message);
-        return this.messageDAO.getMessageById(message.getMessage_id());
+    public Message updateMessage(int message_id, Message message){
+        if((!message.getMessage_text().isBlank()) && message.getMessage_text().length() < 255){
+            messageDAO.updateMessage(message_id, message);
+            return messageDAO.getMessageById(message_id);
+        }
+        return null;
     }
 
-    public Message deleteMessage(int message_id, Message message){
-        Message m = this.messageDAO.getMessageById(message_id);
-        if(m == null) return null;
-
-        messageDAO.deleteMessage(message_id, message);
-        return this.messageDAO.getMessageById(message_id);
+    public Message deleteMessage(int message_id){
+        if(messageDAO.getMessageById(message_id) != null){
+            Message m = messageDAO.getMessageById(message_id);
+            messageDAO.deleteMessage(message_id);
+            return m;
+        }
+        return null;
     }
 }
